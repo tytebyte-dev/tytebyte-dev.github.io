@@ -239,100 +239,6 @@
       max-width: 600px;
     }
 
-    /* Skills */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 0.75rem;
-    }
-
-    .skill {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1rem 1.1rem;
-      text-align: center;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: border-color 0.2s, background 0.2s;
-    }
-
-    .skill:hover {
-      border-color: var(--accent);
-      background: var(--bg-elevated);
-    }
-
-    .skill .icon {
-      font-size: 1.4rem;
-      margin-bottom: 0.4rem;
-      display: block;
-    }
-
-    /* Projects */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1rem;
-    }
-
-    .project-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      transition: border-color 0.2s, transform 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .project-card .status {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      margin-bottom: 0.75rem;
-    }
-
-    .project-card h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .project-card p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    .coming-soon-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(10, 10, 15, 0.6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.2s;
-      border-radius: var(--radius);
-    }
-
-    .project-card:hover .coming-soon-overlay {
-      opacity: 1;
-    }
-
-    .coming-soon-overlay span {
-      background: var(--bg-elevated);
-      border: 1px solid var(--border);
-      padding: 0.4rem 1rem;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 500;
-    }
-
     /* Contact */
     .contact-box {
       background: var(--bg-card);
@@ -422,8 +328,6 @@
       <a href="#" class="logo">tyte<span>byte</span></a>
       <ul class="nav-links">
         <li><a href="#about">Обо мне</a></li>
-        <li><a href="#skills">Навыки</a></li>
-        <li><a href="#projects">Проекты</a></li>
         <li><a href="#contact">Контакты</a></li>
       </ul>
     </nav>
@@ -436,8 +340,8 @@
         Этот сайт — заглушка, полноценное портфолио скоро появится.
       </p>
       <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">Смотреть проекты</a>
-        <a href="#contact" class="btn btn-ghost">Связаться</a>
+        <a href="#contact" class="btn btn-primary">Связаться</a>
+        <a href="https://github.com/tytebyte-dev" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
       </div>
     </header>
 
@@ -448,46 +352,6 @@
         Здесь будет короткое описание: стек, опыт, чем занимаюсь и к чему стремлюсь.
         Пока сайт в стадии подготовки — следите за обновлениями.
       </p>
-    </section>
-
-    <section id="skills">
-      <div class="section-label">// skills</div>
-      <h2>Навыки</h2>
-      <div class="skills-grid">
-        <div class="skill"><span class="icon">⚡</span>JavaScript</div>
-        <div class="skill"><span class="icon">🔷</span>TypeScript</div>
-        <div class="skill"><span class="icon">⚛️</span>React</div>
-        <div class="skill"><span class="icon">🟢</span>Node.js</div>
-        <div class="skill"><span class="icon">🐍</span>Python</div>
-        <div class="skill"><span class="icon">🐳</span>Docker</div>
-        <div class="skill"><span class="icon">☁️</span>Cloud</div>
-        <div class="skill"><span class="icon">🔧</span>Git</div>
-      </div>
-    </section>
-
-    <section id="projects">
-      <div class="section-label">// projects</div>
-      <h2>Проекты</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <div class="status">// 01</div>
-          <h3>Project Alpha</h3>
-          <p>Описание первого проекта появится здесь.</p>
-          <div class="coming-soon-overlay"><span>Скоро</span></div>
-        </div>
-        <div class="project-card">
-          <div class="status">// 02</div>
-          <h3>Project Beta</h3>
-          <p>Описание второго проекта появится здесь.</p>
-          <div class="coming-soon-overlay"><span>Скоро</span></div>
-        </div>
-        <div class="project-card">
-          <div class="status">// 03</div>
-          <h3>Project Gamma</h3>
-          <p>Описание третьего проекта появится здесь.</p>
-          <div class="coming-soon-overlay"><span>Скоро</span></div>
-        </div>
-      </div>
     </section>
 
     <section id="contact">
