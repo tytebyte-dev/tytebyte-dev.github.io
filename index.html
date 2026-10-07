@@ -3,27 +3,510 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TyteByte</title>
+  <meta name="description" content="TyteByte — сайт разработчика. Портфолио, проекты, контакты.">
+  <title>TyteByte — Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a0a0f;
+      --bg-card: #12121a;
+      --bg-elevated: #1a1a24;
+      --border: #2a2a3a;
+      --text: #e8e8ed;
+      --text-muted: #8b8b9e;
+      --accent: #6c5ce7;
+      --accent-hover: #7f71ef;
+      --accent-soft: rgba(108, 92, 231, 0.15);
+      --green: #00d68f;
+      --radius: 12px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
       min-height: 100vh;
+    }
+
+    /* Background gradient orbs */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -20%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(108, 92, 231, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -15%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(0, 214, 143, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Nav */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 4rem;
+    }
+
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      font-size: 1.15rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* Hero */
+    .hero {
+      margin-bottom: 5rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+      margin-bottom: 1.25rem;
+    }
+
+    .badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 .accent {
+      background: linear-gradient(135deg, var(--accent), #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero .subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.35rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--text-muted);
+      color: var(--text);
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 4.5rem;
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+
+    section h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+    }
+
+    /* About */
+    .about-text {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 600px;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .skill {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .skill:hover {
+      border-color: var(--accent);
+      background: var(--bg-elevated);
+    }
+
+    .skill .icon {
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .project-card .status {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .project-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .coming-soon-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 10, 15, 0.6);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: system-ui, -apple-system, sans-serif;
-      background: #0d1117;
-      color: #e6edf3;
+      opacity: 0;
+      transition: opacity 0.2s;
+      border-radius: var(--radius);
     }
-    .container { text-align: center; padding: 2rem; }
-    h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-    p { color: #8b949e; font-size: 1.1rem; }
+
+    .project-card:hover .coming-soon-overlay {
+      opacity: 1;
+    }
+
+    .coming-soon-overlay span {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      padding: 0.4rem 1rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* Contact */
+    .contact-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .contact-box p {
+      color: var(--text-muted);
+      max-width: 360px;
+    }
+
+    .socials {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .socials a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .socials a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .socials svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    footer .mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        display: none;
+      }
+
+      .contact-box {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>TyteByte</h1>
-    <p>Сайт успешно размещён на GitHub Pages</p>
+  <div class="wrap">
+    <nav>
+      <a href="#" class="logo">tyte<span>byte</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">Обо мне</a></li>
+        <li><a href="#skills">Навыки</a></li>
+        <li><a href="#projects">Проекты</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+    </nav>
+
+    <header class="hero">
+      <div class="badge">В разработке</div>
+      <h1>Привет, я <span class="accent">TyteByte</span></h1>
+      <p class="subtitle">
+        Разработчик. Создаю приложения, сервисы и инструменты.
+        Этот сайт — заглушка, полноценное портфолио скоро появится.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">Смотреть проекты</a>
+        <a href="#contact" class="btn btn-ghost">Связаться</a>
+      </div>
+    </header>
+
+    <section id="about">
+      <div class="section-label">// about</div>
+      <h2>Кто я</h2>
+      <p class="about-text">
+        Здесь будет короткое описание: стек, опыт, чем занимаюсь и к чему стремлюсь.
+        Пока сайт в стадии подготовки — следите за обновлениями.
+      </p>
+    </section>
+
+    <section id="skills">
+      <div class="section-label">// skills</div>
+      <h2>Навыки</h2>
+      <div class="skills-grid">
+        <div class="skill"><span class="icon">⚡</span>JavaScript</div>
+        <div class="skill"><span class="icon">🔷</span>TypeScript</div>
+        <div class="skill"><span class="icon">⚛️</span>React</div>
+        <div class="skill"><span class="icon">🟢</span>Node.js</div>
+        <div class="skill"><span class="icon">🐍</span>Python</div>
+        <div class="skill"><span class="icon">🐳</span>Docker</div>
+        <div class="skill"><span class="icon">☁️</span>Cloud</div>
+        <div class="skill"><span class="icon">🔧</span>Git</div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-label">// projects</div>
+      <h2>Проекты</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="status">// 01</div>
+          <h3>Project Alpha</h3>
+          <p>Описание первого проекта появится здесь.</p>
+          <div class="coming-soon-overlay"><span>Скоро</span></div>
+        </div>
+        <div class="project-card">
+          <div class="status">// 02</div>
+          <h3>Project Beta</h3>
+          <p>Описание второго проекта появится здесь.</p>
+          <div class="coming-soon-overlay"><span>Скоро</span></div>
+        </div>
+        <div class="project-card">
+          <div class="status">// 03</div>
+          <h3>Project Gamma</h3>
+          <p>Описание третьего проекта появится здесь.</p>
+          <div class="coming-soon-overlay"><span>Скоро</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-label">// contact</div>
+      <h2>Связаться</h2>
+      <div class="contact-box">
+        <p>Открыт к предложениям и коллаборациям. Напишите — отвечу.</p>
+        <div class="socials">
+          <a href="https://github.com/tytebyte-dev" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.28-.01-1.02-.02-2-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.85 1.24 1.85 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.89-.01 3.29 0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span class="mono">© 2026 TyteByte</span>
+      <span>Сделано с ☕ · GitHub Pages</span>
+    </footer>
   </div>
 </body>
 </html>
